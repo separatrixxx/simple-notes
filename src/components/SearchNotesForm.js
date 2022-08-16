@@ -44,7 +44,7 @@ class SearchNotesForm extends React.Component {
             );
         } else {
             return (
-                <div className="flex flex-col items-center mt-48">
+                <div className="flex justify-center mt-48 px-10 text-center">
                     <h1 className="text-lg md:text-xl text-sky-400">
                         Не найдено заметок с таким названием :(
                     </h1>

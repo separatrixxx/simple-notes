@@ -47,7 +47,7 @@ class NotesForm extends React.Component {
             );
         } else {
             return (
-                <div className="flex flex-col items-center mt-48">
+                <div className="flex h-screen justify-center items-center px-10 text-center">
                     <h1 className="text-lg md:text-xl text-sky-400">
                          У вас нет ни одной заметки :(
                     </h1>
