@@ -21,7 +21,8 @@ class NotesForm extends React.Component {
                     <p onClick={deleteAllNotes} className="text-gray-400 text-xs hover:text-red-400 transition-all
                     duration-500 ease-in-out cursor-pointer mt-3">Удалить все заметки?</p>
                     {list.map(item => (
-                        <a href={`/notes/${item}`} className="w-72 md:w-2/3 flex flex-col items-left bg-black/10 rounded-2xl my-1 md:my-3
+
+                        <a key={item} href={`/notes/${item}`} className="w-72 md:w-2/3 flex flex-col items-left bg-black/10 rounded-2xl my-1 md:my-3
                     px-5 py-1 md:py-3 hover:scale-105 transition-all duration-500 ease-in-out cursor-pointer">
                             <h1 className="text-lg md:text-xl text-sky-400">{item}</h1>
                             <p className="text-sm md:text-base text-gray-400">{JSON.parse(localStorage.getItem(item))[0]}</p>

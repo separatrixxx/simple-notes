@@ -26,6 +26,19 @@ let addNoteBtn = document.getElementById('add_note_btn');
 let noteName = document.getElementById('note_name');
 let noteText = document.getElementById('note_text');
 
+let now = new Date();
+
+let year = now.getFullYear();
+let month = now.getMonth();
+let day = now.getDate();
+let hours = now.getHours();
+let minutes = now.getMinutes();
+
+month = ['Января', 'Февряля', 'Марта', 'Апреля', 'Мая', 'Июня', 'Июля', 'Августа',
+    'Сентября', 'Октября', 'Ноября', 'Декабря'][month]
+
+now = `${day} ${month} ${year} в ${hours}:${minutes}`;
+
 addNoteBtn?.addEventListener('click', () => {
     if (+noteName.value !== 0 && +noteText.value !== 0 && noteName.value !== 'all_notes_names') {
 
@@ -38,19 +51,6 @@ addNoteBtn?.addEventListener('click', () => {
         noteText.classList.add('bg-gray-300');
         noteText.classList.add('hover:bg-gray-400');
         noteText.classList.add('focus:bg-gray-400');
-
-        let now = new Date();
-
-        let year = now.getFullYear();
-        let month = now.getMonth();
-        let day = now.getDate();
-        let hours = now.getHours();
-        let minutes = now.getMinutes();
-
-        month = ['Января', 'Февряля', 'Марта', 'Апреля', 'Мая', 'Июня', 'Июля', 'Августа',
-            'Сентября', 'Октября', 'Ноября', 'Декабря'][month]
-
-        now = `${day} ${month} ${year} в ${hours}:${minutes}`;
 
         let noteValues = JSON.stringify([noteText.value, now]);
 
@@ -104,19 +104,19 @@ addNoteBtn?.addEventListener('click', () => {
     }
 })
 
-let note1 = window.location.pathname
+let note1 = decodeURI(window.location.pathname);
 let note2 = note1.substr(note1.indexOf("/") + 1);
 let noteId = note2.substr(note2.indexOf("/") + 1);
 
-document.getElementById('edit_note_name').value = noteId;
-document.getElementById('edit_note_text').value = JSON.parse(localStorage.getItem(noteId))[0];
+if (document.getElementById('edit_note_name') !== null) {
+    document.getElementById('edit_note_name').value = noteId;
+    document.getElementById('edit_note_text').value = JSON.parse(localStorage.getItem(noteId))[0];
+}
 
 let changeNoteBtn = document.getElementById('change_note_btn');
 
 let noteNameEdit = document.getElementById('edit_note_name');
 let noteTextEdit = document.getElementById('edit_note_text');
-
-let notesNamesEdit;
 
 changeNoteBtn?.addEventListener('click', () => {
     if (+noteNameEdit.value !== 0 && +noteTextEdit.value !== 0 && noteNameEdit.value !== 'all_notes_names') {
@@ -131,19 +131,6 @@ changeNoteBtn?.addEventListener('click', () => {
         noteTextEdit.classList.add('hover:bg-gray-400');
         noteTextEdit.classList.add('focus:bg-gray-400');
 
-        let now = new Date();
-
-        let year = now.getFullYear();
-        let month = now.getMonth();
-        let day = now.getDate();
-        let hours = now.getHours();
-        let minutes = now.getMinutes();
-
-        month = ['Января', 'Февряля', 'Марта', 'Апреля', 'Мая', 'Июня', 'Июля', 'Августа',
-            'Сентября', 'Октября', 'Ноября', 'Декабря'][month]
-
-        now = `${day} ${month} ${year} в ${hours}:${minutes}`;
-
         let noteValues = JSON.stringify([noteTextEdit.value, now]);
 
         let notesNames = localStorage.getItem('all_notes_names');
@@ -155,29 +142,22 @@ changeNoteBtn?.addEventListener('click', () => {
             notesNames = JSON.parse(notesNames);
         }
 
-        if (notesNames.indexOf(noteNameEdit.value) === -1) {
+        if (notesNames.indexOf(noteNameEdit.value) === -1 || noteNameEdit.value === noteId) {
+
             localStorage.removeItem(noteId);
 
-            notesNamesEdit = localStorage.getItem('all_notes_names');
-
-            if (notesNamesEdit !== null) {
-                notesNamesEdit = JSON.parse(notesNamesEdit);
-            } else {
-                notesNamesEdit = '[]';
-                notesNamesEdit = JSON.parse(notesNamesEdit);
-            }
-
-            let myIndex = notesNamesEdit.indexOf(noteId);
+            let myIndex = notesNames.indexOf(noteId);
             if (myIndex !== -1) {
-                notesNamesEdit.splice(myIndex, 1);
+                notesNames.splice(myIndex, 1);
             }
 
-            localStorage.setItem('all_notes_names', JSON.stringify(notesNamesEdit));
+            localStorage.setItem('all_notes_names', JSON.stringify(notesNames));
 
             localStorage.setItem(noteNameEdit.value, noteValues);
 
             notesNames.push(noteNameEdit.value);
             localStorage.setItem('all_notes_names', JSON.stringify(notesNames));
+
             window.location.href = '/';
         } else {
             alert('Заметка с таким названием уже существует');
