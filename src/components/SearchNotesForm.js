@@ -8,6 +8,21 @@ class SearchNotesForm extends React.Component {
         let note2 = note1.substr(note1.indexOf("/") + 1);
         let noteId = note2.substr(note2.indexOf("/") + 1);
 
+        let lastEl = noteId.substring(noteId.length - 1, noteId.length);
+        let firstEl = noteId.substring(0, 1);
+
+        while (lastEl === ' ') {
+            noteId = noteId.substring(0, noteId.length - 1);
+
+            lastEl = noteId.substring(noteId.length - 1, noteId.length);
+        }
+
+        while (firstEl === ' ') {
+            noteId = noteId.substring(1, noteId.length);
+
+            firstEl = noteId.substring(0, 1);
+        }
+
         let list = localStorage.getItem('all_notes_names');
         if (list !== null) {
             list = JSON.parse(list);
@@ -20,6 +35,7 @@ class SearchNotesForm extends React.Component {
         let listNew = []
 
         for (let value of list) {
+
             if (value.toLowerCase().indexOf(noteId.toLowerCase()) !== -1) {
                 listNew.push(value)
             }

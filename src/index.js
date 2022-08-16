@@ -40,7 +40,7 @@ month = ['Января', 'Февряля', 'Марта', 'Апреля', 'Мая
 now = `${day} ${month} ${year} в ${hours}:${minutes}`;
 
 addNoteBtn?.addEventListener('click', () => {
-    if (+noteName.value !== 0 && +noteText.value !== 0 && noteName.value !== 'all_notes_names') {
+    if (+noteName.value !== 0 && +noteText.value !== 0 && delSpaces(noteName.value) !== 'all_notes_names') {
 
         noteName.classList.remove('bg-red-200');
         noteName.classList.add('bg-gray-200');
@@ -51,6 +51,9 @@ addNoteBtn?.addEventListener('click', () => {
         noteText.classList.add('bg-gray-200');
         noteText.classList.add('hover:bg-gray-300');
         noteText.classList.add('focus:bg-gray-300');
+
+        let noteNameValue = noteName.value;
+        noteNameValue = delSpaces(noteNameValue);
 
         let noteValues = JSON.stringify([noteText.value, now]);
 
@@ -63,18 +66,18 @@ addNoteBtn?.addEventListener('click', () => {
             notesNames = JSON.parse(notesNames);
         }
 
-        if (notesNames.indexOf(noteName.value) === -1) {
+        if (notesNames.indexOf(noteNameValue) === -1) {
 
-            localStorage.setItem(noteName.value, noteValues);
+            localStorage.setItem(noteNameValue, noteValues);
 
-            notesNames.push(noteName.value);
+            notesNames.push(noteNameValue);
             localStorage.setItem('all_notes_names', JSON.stringify(notesNames));
             window.location.href = '/';
         } else {
             alert('Заметка с таким названием уже существует');
         }
     } else {
-        if (+noteName.value === 0 || noteName.value === 'all_notes_names') {
+        if (+delSpaces(noteName.value) === 0 || delSpaces(noteName.value) === 'all_notes_names') {
             noteName.classList.add('bg-red-200');
             noteName.classList.remove('bg-gray-200');
             noteName.classList.remove('hover:bg-gray-300');
@@ -98,7 +101,7 @@ addNoteBtn?.addEventListener('click', () => {
             noteText.classList.add('focus:bg-gray-300');
         }
 
-        if (noteName.value === 'all_notes_names') {
+        if (delSpaces(noteName.value) === 'all_notes_names') {
             alert('Данное название недоступно');
         }
     }
@@ -107,6 +110,8 @@ addNoteBtn?.addEventListener('click', () => {
 let note1 = decodeURI(window.location.pathname);
 let note2 = note1.substr(note1.indexOf("/") + 1);
 let noteId = note2.substr(note2.indexOf("/") + 1);
+
+noteId = delSpaces(noteId)
 
 if (document.getElementById('edit_note_name') !== null) {
     document.getElementById('edit_note_name').value = noteId;
@@ -119,7 +124,10 @@ let noteNameEdit = document.getElementById('edit_note_name');
 let noteTextEdit = document.getElementById('edit_note_text');
 
 changeNoteBtn?.addEventListener('click', () => {
-    if (+noteNameEdit.value !== 0 && +noteTextEdit.value !== 0 && noteNameEdit.value !== 'all_notes_names') {
+    if (+noteNameEdit.value !== 0 && +noteTextEdit.value !== 0 && delSpaces(noteNameEdit.value) !== 'all_notes_names') {
+
+        let noteNameEditValue = noteNameEdit.value;
+        noteNameEditValue = delSpaces(noteNameEditValue);
 
         noteNameEdit.classList.remove('bg-red-200');
         noteNameEdit.classList.add('bg-gray-200');
@@ -142,7 +150,7 @@ changeNoteBtn?.addEventListener('click', () => {
             notesNames = JSON.parse(notesNames);
         }
 
-        if (notesNames.indexOf(noteNameEdit.value) === -1 || noteNameEdit.value === noteId) {
+        if (notesNames.indexOf(noteNameEditValue) === -1 || noteNameEditValue === noteId) {
 
             localStorage.removeItem(noteId);
 
@@ -153,9 +161,9 @@ changeNoteBtn?.addEventListener('click', () => {
 
             localStorage.setItem('all_notes_names', JSON.stringify(notesNames));
 
-            localStorage.setItem(noteNameEdit.value, noteValues);
+            localStorage.setItem(noteNameEditValue, noteValues);
 
-            notesNames.push(noteNameEdit.value);
+            notesNames.push(noteNameEditValue);
             localStorage.setItem('all_notes_names', JSON.stringify(notesNames));
 
             window.location.href = '/';
@@ -163,7 +171,7 @@ changeNoteBtn?.addEventListener('click', () => {
             alert('Заметка с таким названием уже существует');
         }
     } else {
-        if (+noteNameEdit.value === 0 || noteNameEdit.value === 'all_notes_names') {
+        if (+delSpaces(noteNameEdit.value) === 0 || delSpaces(noteNameEdit.value) === 'all_notes_names') {
             noteNameEdit.classList.add('bg-red-200');
             noteNameEdit.classList.remove('bg-gray-200');
             noteNameEdit.classList.remove('hover:bg-gray-300');
@@ -187,11 +195,30 @@ changeNoteBtn?.addEventListener('click', () => {
             noteTextEdit.classList.add('focus:bg-gray-300');
         }
 
-        if (noteNameEdit.value === 'all_notes_names') {
+        if (delSpaces(noteNameEdit.value) === 'all_notes_names') {
             alert('Данное название недоступно');
         }
     }
 })
+
+function delSpaces(str) {
+    let lastEl = str.substring(str.length - 1, str.length);
+    let firstEl = str.substring(0, 1);
+
+    while (lastEl === ' ') {
+        str = str.substring(0, str.length - 1);
+
+        lastEl = str.substring(str.length - 1, str.length);
+    }
+
+    while (firstEl === ' ') {
+        str = str.substring(1, str.length);
+
+        firstEl = str.substring(0, 1);
+    }
+
+    return str;
+}
 
 let input = document.getElementById('search');
 
