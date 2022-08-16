@@ -2,7 +2,7 @@ import React from 'react';
 
 function Home () {
     return (
-        <a href="/" id="header_div" className="flex flex-col absolute top-0 left-0 m-3 md:m-5 text-gray-400 hover:text-gray-300
+        <a href="/" id="header_div" className="flex flex-col fixed top-0 left-0 m-3 md:m-5 text-gray-400 hover:text-gray-300
         transition-all duration-500 ease-in-out cursor-pointer">
             <h1 className="text-xl md:text-3xl">
                 Simple

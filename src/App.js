@@ -3,6 +3,7 @@ import Home from './pages/Home'
 import NotFound from './pages/NotFound'
 import AddNotePage from './pages/AddNotePage'
 import EditNotePage from './pages/EditNotePage'
+import SearchNotes from './pages/SearchNotes'
 
 import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
 
@@ -24,6 +25,10 @@ function App() {
             <Route path="/notes">
                 <Route index element={<NotFound />} />
                 <Route path=":id" element={<EditNotePage />} />
+            </Route>
+            <Route path='/search'>
+                <Route index element={<SearchNotes />} />
+                <Route path=":id" element={<SearchNotes />} />
             </Route>
           </Routes>
         </Router>

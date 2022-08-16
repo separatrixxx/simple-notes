@@ -2,8 +2,6 @@ import React from 'react';
 
 function EditNoteForm () {
 
-    document.title = 'Изменить заметку';
-
     let notesNames = localStorage.getItem('all_notes_names');
 
     if (notesNames !== null) {
@@ -19,17 +17,17 @@ function EditNoteForm () {
 
     if (notesNames.indexOf(noteId) !== -1) {
         return (
-            <div className="w-full flex flex-col items-center p-5 lg:p-10 bg-black/10 rounded-2xl mt-32 mx-5 md:mx-10">
+            <div className="w-full flex flex-col items-center p-5 lg:p-10 mt-32 mx-5 md:mx-10">
                 <div className="w-full flex flex-col items-center">
                     <label htmlFor="formName" className="text-sm md:text-base text-sky-400">Название:</label>
-                    <input id="edit_note_name" type="text" name="name" className="w-72 md:w-2/3 h-10 rounded-full mt-1 bg-gray-300
-                text-neutral-800 px-3 focus:outline-none hover:bg-gray-400 focus:bg-gray-400
+                    <input id="edit_note_name" type="text" name="name" className="w-72 md:w-2/3 h-10 rounded-full mt-1 bg-gray-200
+                text-gray-700 px-3 focus:outline-none hover:bg-gray-300 focus:bg-gray-300
                 transition-colors duration-300 ease-in-out" />
                 </div>
                 <div className="w-full flex flex-col items-center mt-3">
                     <label htmlFor="formMessage" className="text-sm md:text-base text-sky-400">Заметка:</label>
-                    <textarea id="edit_note_text" name="message"  className="w-72 md:w-2/3 h-48 rounded-2xl mt-1 bg-gray-300
-                text-neutral-800 px-3 py-1 focus:outline-none hover:bg-gray-400 focus:bg-gray-400
+                    <textarea id="edit_note_text" name="message"  className="w-72 md:w-2/3 h-48 rounded-2xl mt-1 bg-gray-200
+                text-gray-700 px-3 py-1 focus:outline-none hover:bg-gray-300 focus:bg-gray-300
                 transition-colors duration-300 ease-in-out"></textarea>
                 </div>
                 <div className="flex flex-col md:flex-row mt-7">

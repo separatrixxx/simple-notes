@@ -43,14 +43,14 @@ addNoteBtn?.addEventListener('click', () => {
     if (+noteName.value !== 0 && +noteText.value !== 0 && noteName.value !== 'all_notes_names') {
 
         noteName.classList.remove('bg-red-200');
-        noteName.classList.add('bg-gray-300');
-        noteName.classList.add('hover:bg-gray-400');
-        noteName.classList.add('focus:bg-gray-400');
+        noteName.classList.add('bg-gray-200');
+        noteName.classList.add('hover:bg-gray-300');
+        noteName.classList.add('focus:bg-gray-300');
 
         noteText.classList.remove('bg-red-200');
-        noteText.classList.add('bg-gray-300');
-        noteText.classList.add('hover:bg-gray-400');
-        noteText.classList.add('focus:bg-gray-400');
+        noteText.classList.add('bg-gray-200');
+        noteText.classList.add('hover:bg-gray-300');
+        noteText.classList.add('focus:bg-gray-300');
 
         let noteValues = JSON.stringify([noteText.value, now]);
 
@@ -76,26 +76,26 @@ addNoteBtn?.addEventListener('click', () => {
     } else {
         if (+noteName.value === 0 || noteName.value === 'all_notes_names') {
             noteName.classList.add('bg-red-200');
-            noteName.classList.remove('bg-gray-300');
-            noteName.classList.remove('hover:bg-gray-400');
-            noteName.classList.remove('focus:bg-gray-400');
+            noteName.classList.remove('bg-gray-200');
+            noteName.classList.remove('hover:bg-gray-300');
+            noteName.classList.remove('focus:bg-gray-300');
         } else {
             noteName.classList.remove('bg-red-200');
-            noteName.classList.add('bg-gray-300');
-            noteName.classList.add('hover:bg-gray-400');
-            noteName.classList.add('focus:bg-gray-400');
+            noteName.classList.add('bg-gray-200');
+            noteName.classList.add('hover:bg-gray-300');
+            noteName.classList.add('focus:bg-gray-300');
         }
 
         if (+noteText.value === 0) {
             noteText.classList.add('bg-red-200');
-            noteText.classList.remove('bg-gray-300');
-            noteText.classList.remove('hover:bg-gray-400');
-            noteText.classList.remove('focus:bg-gray-400');
+            noteText.classList.remove('bg-gray-200');
+            noteText.classList.remove('hover:bg-gray-300');
+            noteText.classList.remove('focus:bg-gray-300');
         } else {
             noteText.classList.remove('bg-red-200');
-            noteText.classList.add('bg-gray-300');
-            noteText.classList.add('hover:bg-gray-400');
-            noteText.classList.add('focus:bg-gray-400');
+            noteText.classList.add('bg-gray-200');
+            noteText.classList.add('hover:bg-gray-300');
+            noteText.classList.add('focus:bg-gray-300');
         }
 
         if (noteName.value === 'all_notes_names') {
@@ -122,14 +122,14 @@ changeNoteBtn?.addEventListener('click', () => {
     if (+noteNameEdit.value !== 0 && +noteTextEdit.value !== 0 && noteNameEdit.value !== 'all_notes_names') {
 
         noteNameEdit.classList.remove('bg-red-200');
-        noteNameEdit.classList.add('bg-gray-300');
-        noteNameEdit.classList.add('hover:bg-gray-400');
-        noteNameEdit.classList.add('focus:bg-gray-400');
+        noteNameEdit.classList.add('bg-gray-200');
+        noteNameEdit.classList.add('hover:bg-gray-300');
+        noteNameEdit.classList.add('focus:bg-gray-300');
 
         noteTextEdit.classList.remove('bg-red-200');
-        noteTextEdit.classList.add('bg-gray-300');
-        noteTextEdit.classList.add('hover:bg-gray-400');
-        noteTextEdit.classList.add('focus:bg-gray-400');
+        noteTextEdit.classList.add('bg-gray-200');
+        noteTextEdit.classList.add('hover:bg-gray-300');
+        noteTextEdit.classList.add('focus:bg-gray-300');
 
         let noteValues = JSON.stringify([noteTextEdit.value, now]);
 
@@ -165,26 +165,26 @@ changeNoteBtn?.addEventListener('click', () => {
     } else {
         if (+noteNameEdit.value === 0 || noteNameEdit.value === 'all_notes_names') {
             noteNameEdit.classList.add('bg-red-200');
-            noteNameEdit.classList.remove('bg-gray-300');
-            noteNameEdit.classList.remove('hover:bg-gray-400');
-            noteNameEdit.classList.remove('focus:bg-gray-400');
+            noteNameEdit.classList.remove('bg-gray-200');
+            noteNameEdit.classList.remove('hover:bg-gray-300');
+            noteNameEdit.classList.remove('focus:bg-gray-300');
         } else {
             noteNameEdit.classList.remove('bg-red-200');
-            noteNameEdit.classList.add('bg-gray-300');
-            noteNameEdit.classList.add('hover:bg-gray-400');
-            noteNameEdit.classList.add('focus:bg-gray-400');
+            noteNameEdit.classList.add('bg-gray-200');
+            noteNameEdit.classList.add('hover:bg-gray-300');
+            noteNameEdit.classList.add('focus:bg-gray-300');
         }
 
         if (+noteTextEdit.value === 0) {
             noteTextEdit.classList.add('bg-red-200');
-            noteTextEdit.classList.remove('bg-gray-300');
-            noteTextEdit.classList.remove('hover:bg-gray-400');
-            noteTextEdit.classList.remove('focus:bg-gray-400');
+            noteTextEdit.classList.remove('bg-gray-200');
+            noteTextEdit.classList.remove('hover:bg-gray-300');
+            noteTextEdit.classList.remove('focus:bg-gray-300');
         } else {
             noteTextEdit.classList.remove('bg-red-200');
-            noteTextEdit.classList.add('bg-gray-300');
-            noteTextEdit.classList.add('hover:bg-gray-400');
-            noteTextEdit.classList.add('focus:bg-gray-400');
+            noteTextEdit.classList.add('bg-gray-200');
+            noteTextEdit.classList.add('hover:bg-gray-300');
+            noteTextEdit.classList.add('focus:bg-gray-300');
         }
 
         if (noteNameEdit.value === 'all_notes_names') {
@@ -192,3 +192,44 @@ changeNoteBtn?.addEventListener('click', () => {
         }
     }
 })
+
+let input = document.getElementById('search');
+
+input?.addEventListener('keypress', function(e){
+    if(e.which === 13){
+        e.preventDefault();
+        let val = document.getElementById('search').value;
+
+        if (val !== '') {
+            window.location.href = `/search/${val}`;
+        } else {
+            window.location.href = '/';
+        }
+    }
+});
+
+if (document.getElementById('search') !== null) {
+    document.getElementById('search').value = noteId;
+}
+
+
+let notesNames = localStorage.getItem('all_notes_names');
+
+if (notesNames !== null) {
+    notesNames = JSON.parse(notesNames);
+} else {
+    notesNames = '[]';
+    notesNames = JSON.parse(notesNames);
+}
+
+for (let value of notesNames) {
+    let contentId = 'note_content_' + value;
+    let textId = 'note_text_' + value;
+    document.getElementById(contentId)?.addEventListener('mouseover', () => {
+        document.getElementById(textId).classList.remove('truncate');
+    })
+
+    document.getElementById(contentId)?.addEventListener('mouseout', () => {
+        document.getElementById(textId).classList.add('truncate');
+    })
+}
