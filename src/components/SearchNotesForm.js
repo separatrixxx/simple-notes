@@ -74,7 +74,7 @@ class SearchNotesForm extends React.Component {
 
             if (isDelete) {
                 localStorage.clear();
-                window.location.reload();
+                window.location.href = '/';
             }
         }
     }
