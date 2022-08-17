@@ -10,6 +10,7 @@ function NoteForm () {
                 text-gray-700 px-3 focus:outline-none hover:bg-gray-300 focus:bg-gray-300
                 transition-colors duration-300 ease-in-out" />
             </div>
+            <p id="noteNameError" className="mt-1 text-xs text-red-400 hidden">Ошибка капец</p>
             <div className="w-full flex flex-col items-center mt-3">
                 <label htmlFor="formMessage" className="text-sm md:text-base text-sky-400">Заметка:</label>
                 <textarea id="note_text" name="message"  className="w-72 md:w-2/3 h-48 rounded-2xl mt-1 bg-gray-200

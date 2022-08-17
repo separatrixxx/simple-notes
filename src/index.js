@@ -42,6 +42,8 @@ now = `${day} ${month} ${year} в ${hours}:${minutes}`;
 addNoteBtn?.addEventListener('click', () => {
     if (+noteName.value !== 0 && +noteText.value !== 0 && delSpaces(noteName.value) !== 'all_notes_names') {
 
+        document.getElementById('noteNameError').classList.add('hidden');
+
         noteName.classList.remove('bg-red-200');
         noteName.classList.add('bg-gray-200');
         noteName.classList.add('hover:bg-gray-300');
@@ -74,10 +76,14 @@ addNoteBtn?.addEventListener('click', () => {
             localStorage.setItem('all_notes_names', JSON.stringify(notesNames));
             window.location.href = '/';
         } else {
-            alert('Заметка с таким названием уже существует');
+            document.getElementById('noteNameError').innerHTML = 'Заметка с таким названием уже существует';
+            document.getElementById('noteNameError').classList.remove('hidden');
         }
     } else {
         if (+delSpaces(noteName.value) === 0 || delSpaces(noteName.value) === 'all_notes_names') {
+
+            document.getElementById('noteNameError').classList.add('hidden');
+
             noteName.classList.add('bg-red-200');
             noteName.classList.remove('bg-gray-200');
             noteName.classList.remove('hover:bg-gray-300');
@@ -102,7 +108,8 @@ addNoteBtn?.addEventListener('click', () => {
         }
 
         if (delSpaces(noteName.value) === 'all_notes_names') {
-            alert('Данное название недоступно');
+            document.getElementById('noteNameError').innerHTML = 'Данное название недоступно';
+            document.getElementById('noteNameError').classList.remove('hidden');
         }
     }
 })
@@ -152,6 +159,8 @@ changeNoteBtn?.addEventListener('click', () => {
 
         if (notesNames.indexOf(noteNameEditValue) === -1 || noteNameEditValue === noteId) {
 
+            document.getElementById('noteNameError')?.classList.add('hidden');
+
             localStorage.removeItem(noteId);
 
             let myIndex = notesNames.indexOf(noteId);
@@ -168,10 +177,14 @@ changeNoteBtn?.addEventListener('click', () => {
 
             window.location.href = '/';
         } else {
-            alert('Заметка с таким названием уже существует');
+            document.getElementById('noteNameError').innerHTML = 'Заметка с таким названием уже существует';
+            document.getElementById('noteNameError').classList.remove('hidden');
         }
     } else {
         if (+delSpaces(noteNameEdit.value) === 0 || delSpaces(noteNameEdit.value) === 'all_notes_names') {
+
+            document.getElementById('noteNameError').classList.add('hidden');
+
             noteNameEdit.classList.add('bg-red-200');
             noteNameEdit.classList.remove('bg-gray-200');
             noteNameEdit.classList.remove('hover:bg-gray-300');
@@ -196,7 +209,8 @@ changeNoteBtn?.addEventListener('click', () => {
         }
 
         if (delSpaces(noteNameEdit.value) === 'all_notes_names') {
-            alert('Данное название недоступно');
+            document.getElementById('noteNameError').innerHTML = 'Данное название недоступно';
+            document.getElementById('noteNameError').classList.remove('hidden');
         }
     }
 })
@@ -260,3 +274,36 @@ for (let value of notesNames) {
         document.getElementById(textId).classList.add('truncate');
     })
 }
+
+document.getElementById('delete_note_btn')?.addEventListener('click', () => {
+    document.getElementById('change_note_btn')?.classList.add('hidden');
+    document.getElementById('delete_note_btn')?.classList.add('hidden');
+
+    document.getElementById('are_you_sure')?.classList.remove('hidden');
+    document.getElementById('cancel_delete_btn')?.classList.remove('hidden');
+    document.getElementById('confirm_delete_btn')?.classList.remove('hidden');
+})
+
+document.getElementById('cancel_delete_btn')?.addEventListener('click', () => {
+    document.getElementById('change_note_btn')?.classList.remove('hidden');
+    document.getElementById('delete_note_btn')?.classList.remove('hidden');
+
+    document.getElementById('are_you_sure')?.classList.add('hidden');
+    document.getElementById('cancel_delete_btn')?.classList.add('hidden');
+    document.getElementById('confirm_delete_btn')?.classList.add('hidden');
+})
+
+
+document.getElementById('notes_all_delete')?.addEventListener('click', () => {
+    document.getElementById('notes_all_delete')?.classList.add('hidden');
+
+    document.getElementById('cancel_all_delete')?.classList.remove('hidden');
+    document.getElementById('confirm_all_delete')?.classList.remove('hidden');
+})
+
+document.getElementById('cancel_all_delete')?.addEventListener('click', () => {
+    document.getElementById('notes_all_delete')?.classList.remove('hidden');
+
+    document.getElementById('cancel_all_delete')?.classList.add('hidden');
+    document.getElementById('confirm_all_delete')?.classList.add('hidden');
+})

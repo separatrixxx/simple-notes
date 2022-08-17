@@ -29,8 +29,14 @@ class NotesForm extends React.Component {
                             ease-in-out duration-300"
                             placeholder="" type="text" name="search"/>
                     </label>
-                    <p onClick={deleteAllNotes} className="text-gray-400 text-xs hover:text-red-400 transition-all
-                    duration-500 ease-in-out cursor-pointer mt-3">Удалить все заметки?</p>
+                    <div className="flex flex-row justify-center mt-3">
+                        <p id="notes_all_delete" className="text-gray-400 text-xs hover:text-red-400 transition-all
+                    duration-500 ease-in-out cursor-pointer">Удалить все заметки?</p>
+                        <p id="cancel_all_delete" className="text-gray-400 text-xs hover:text-sky-400 transition-all
+                    duration-500 ease-in-out cursor-pointer mr-2 md:mr-3 hidden">Отмена</p>
+                        <p id="confirm_all_delete" onClick={deleteAllNotes} className="text-gray-400 text-xs hover:text-red-400 transition-all
+                    duration-500 ease-in-out cursor-pointer ml-2 md:ml-3 hidden">Удалить</p>
+                    </div>
                     {list.map(item => (
 
                         <a key={item} href={`/notes/${item}`} id={`note_content_${item}`} className="w-72 md:w-2/3 flex flex-col
@@ -56,13 +62,8 @@ class NotesForm extends React.Component {
         }
 
         function deleteAllNotes() {
-            // eslint-disable-next-line no-restricted-globals
-            let isDelete = confirm("Удалить все заметки?");
-
-            if (isDelete) {
-                localStorage.clear();
-                window.location.href = '/';
-            }
+            localStorage.clear();
+            window.location.href = '/';
         }
     }
 }
