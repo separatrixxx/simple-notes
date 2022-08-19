@@ -32,7 +32,11 @@ let year = now.getFullYear();
 let month = now.getMonth();
 let day = now.getDate();
 let hours = now.getHours();
-let minutes = now.getMinutes();
+let minutes = String(now.getMinutes());
+
+if  (minutes.length === 1) {
+    minutes = '0' + minutes;
+}
 
 month = ['Января', 'Февряля', 'Марта', 'Апреля', 'Мая', 'Июня', 'Июля', 'Августа',
     'Сентября', 'Октября', 'Ноября', 'Декабря'][month]
