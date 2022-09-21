@@ -30,7 +30,7 @@ function EditNoteForm () {
                 text-gray-700 px-3 py-1 focus:outline-none hover:bg-gray-300 focus:bg-gray-300
                 transition-colors duration-300 ease-in-out"></textarea>
                 </div>
-                <p id="are_you_sure" className="mt-5 text-xs text-gray-700 hidden">Вы уверены?</p>
+                <p id="are_you_sure" className="mt-5 text-xs text-gray-700 hidden select-none">Вы уверены?</p>
                 <div className="flex flex-col md:flex-row mt-7">
                     <button id="change_note_btn" className="w-56 h-10 rounded-full bg-sky-400 text-white text-sm lg:text-base
                  hover:scale-105 transition-all duration-300 ease-in-out mx-0 md:mx-5">Изменить заметку</button>
@@ -38,9 +38,9 @@ function EditNoteForm () {
                  hover:scale-105 transition-all duration-300 ease-in-out mx-0 md:mx-5 mt-3 md:mt-0">Удалить заметку</button>
 
                     <button id="cancel_delete_btn" className="w-56 h-10 rounded-full bg-sky-400 text-white text-sm lg:text-base
-                 hover:scale-105 transition-all duration-300 ease-in-out mx-0 md:mx-5 hidden">Отмена</button>
+                 hover:scale-105 transition-all duration-300 ease-in-out mx-0 md:mx-5 hidden select-none">Отмена</button>
                     <button id="confirm_delete_btn" onClick={deleteNote} className="w-56 h-10 rounded-full bg-red-400 text-white text-sm lg:text-base
-                 hover:scale-105 transition-all duration-300 ease-in-out mx-0 md:mx-5 mt-3 md:mt-0 hidden">Удалить</button>
+                 hover:scale-105 transition-all duration-300 ease-in-out mx-0 md:mx-5 mt-3 md:mt-0 hidden select-none">Удалить</button>
                 </div>
             </div>
         );

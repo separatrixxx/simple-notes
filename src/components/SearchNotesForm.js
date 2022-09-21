@@ -46,11 +46,11 @@ class SearchNotesForm extends React.Component {
                 <div className="flex flex-col items-center mb-7">
                     <div className="flex flex-row justify-center mt-3">
                         <p id="notes_all_delete" className="text-gray-400 text-xs hover:text-red-400 transition-all
-                    duration-500 ease-in-out cursor-pointer">Удалить все заметки?</p>
+                    duration-500 ease-in-out cursor-pointer select-none">Удалить все заметки?</p>
                         <p id="cancel_all_delete" className="text-gray-400 text-xs hover:text-sky-400 transition-all
-                    duration-500 ease-in-out cursor-pointer mr-2 md:mr-3 hidden">Отмена</p>
+                    duration-500 ease-in-out cursor-pointer mr-2 md:mr-3 hidden select-none">Отмена</p>
                         <p id="confirm_all_delete" onClick={deleteAllNotes} className="text-gray-400 text-xs hover:text-red-400 transition-all
-                    duration-500 ease-in-out cursor-pointer ml-2 md:ml-3 hidden">Удалить</p>
+                    duration-500 ease-in-out cursor-pointer ml-2 md:ml-3 hidden select-none">Удалить</p>
                     </div>
                     {listNew.map(item => (
                         <a key={item} href={`/notes/${item}`} id={`note_content_${item}`} className="w-72 md:w-2/3 flex flex-col

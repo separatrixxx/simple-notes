@@ -31,11 +31,11 @@ class NotesForm extends React.Component {
                     </label>
                     <div className="flex flex-row justify-center mt-3">
                         <p id="notes_all_delete" className="text-gray-400 text-xs hover:text-red-400 transition-all
-                    duration-500 ease-in-out cursor-pointer">Удалить все заметки?</p>
+                    duration-500 ease-in-out cursor-pointer select-none">Удалить все заметки?</p>
                         <p id="cancel_all_delete" className="text-gray-400 text-xs hover:text-sky-400 transition-all
-                    duration-500 ease-in-out cursor-pointer mr-2 md:mr-3 hidden">Отмена</p>
+                    duration-500 ease-in-out cursor-pointer mr-2 md:mr-3 hidden select-none">Отмена</p>
                         <p id="confirm_all_delete" onClick={deleteAllNotes} className="text-gray-400 text-xs hover:text-red-400 transition-all
-                    duration-500 ease-in-out cursor-pointer ml-2 md:ml-3 hidden">Удалить</p>
+                    duration-500 ease-in-out cursor-pointer ml-2 md:ml-3 hidden select-none">Удалить</p>
                     </div>
                     {list.map(item => (
 
